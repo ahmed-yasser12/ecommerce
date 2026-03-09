@@ -18,12 +18,12 @@ export default function Cart() {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between border rounded-lg p-4 shadow-sm"
+              className="flex items-center justify-between  rounded-lg p-4 shadow-sm"
             >
               {/* Product Info */}
               <div className="flex items-center gap-4">
                 <img
-                  src={item.image}
+                  src={item.thumbnail}
                   alt={item.title}
                   className="w-20 h-20 object-cover rounded"
                 />
@@ -37,7 +37,7 @@ export default function Cart() {
               {/* Quantity */}
               <div className="flex items-center gap-2">
                 <button
-                  className="px-2 py-1 border rounded"
+                  className="px-2 hover:cursor-pointer py-1 border rounded"
                   onClick={() => decreaseQty(item.id)}
                 >
                   -
@@ -45,7 +45,7 @@ export default function Cart() {
                 <span>{item.quantity}</span>
                 <button
                   onClick={() => increaseQty(item.id)}
-                  className="px-2 py-1 border rounded"
+                  className="px-2 hover:cursor-pointer py-1 border rounded"
                 >
                   +
                 </button>
@@ -54,7 +54,7 @@ export default function Cart() {
               {/* Remove */}
               <button
                 onClick={() => removeFromCart(item.id)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-500 hover:cursor-pointer hover:text-red-700"
               >
                 Remove
               </button>

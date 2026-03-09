@@ -20,10 +20,10 @@ function Wishlist() {
 
       <div className="grid md:grid-cols-3 gap-6">
         {items.map((product) => (
-          <div key={product.id} className="border rounded-xl p-4 shadow">
+          <div key={product.id} className=" overflow-hidden rounded-xl p-4 shadow">
             <img
               src={product.thumbnail}
-              className="w-full h-48 object-cover rounded"
+              className="w-full h-48  hover:scale-105 transition-transform object-cover rounded"
             />
 
             <h3 className="mt-4 font-semibold">{product.title}</h3>
@@ -38,7 +38,7 @@ function Wishlist() {
                   removeFromWishList(product.id);
                   toast.success("Moved to cart 🛒");
                 }}
-                className="bg-blue-600 text-white px-4 py-2 rounded"
+                className="bg-blue-600 hover:cursor-pointer text-white px-4 py-2 rounded"
               >
                 Move to Cart
               </button>
@@ -46,7 +46,7 @@ function Wishlist() {
               {/* Remove */}
               <button
                 onClick={() => removeFromWishList(product.id)}
-                className="border px-4 py-2 rounded hover:bg-red-50 text-red-500"
+                className="border hover:cursor-pointer px-4 py-2 rounded hover:bg-red-50 text-red-500"
               >
                 Remove
               </button>
