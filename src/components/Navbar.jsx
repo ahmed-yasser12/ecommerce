@@ -69,15 +69,15 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {open && (
           <div className="md:hidden pb-4 flex flex-col gap-4">
-            <Link href="/" className="hover:text-blue-600">
+            <Link to="/home" className="hover:text-blue-600">
               Home
             </Link>
 
-            <Link href="/products" className="hover:text-blue-600">
+            <Link to="/products" className="hover:text-blue-600">
               Products
             </Link>
 
-            <Link href="/wishlist" className="hover:text-blue-600">
+            <Link to="/wishlist" className="hover:text-blue-600">
               Wishlist
             </Link>
 
