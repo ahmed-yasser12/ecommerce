@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./Pages/Home/Home";
 import Products from "./Pages/Products/Products";
@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound";
 export default function App() {
   return (
     
-    <BrowserRouter>
+    <HashRouter>
     <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -25,6 +25,6 @@ export default function App() {
            <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
