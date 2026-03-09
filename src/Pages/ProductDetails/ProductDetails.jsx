@@ -5,7 +5,10 @@ import { Heart, ShoppingCart, Star } from 'lucide-react';
 import HalfStar from '../Products/HaIfStar';
 import useCart from '../../hooks/useCart';
 import toast from 'react-hot-toast';
+import { Helmet } from "react-helmet-async";
+
 function ProductDetails() {
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const { addToCart } = useCart();
@@ -24,6 +27,9 @@ useEffect(() => {
     );
   }
   return <>
+    <Helmet>
+        <title>Products Details| ShopHub</title>
+      </Helmet>
   <section className="max-w-7xl my-15 mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <h4 className='my-5'><span className='text-gray-400'>Home / Products /</span>{product?.title}</h4>
       <div className="grid md:grid-cols-2 gap-10 items-start">

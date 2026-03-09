@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../features/Products/Services/productAPI";
 import ProductItems from "../Products/ProductItems";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   // eslint-disable-next-line no-unused-vars
@@ -19,6 +20,9 @@ export default function Home() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Home | ShopHub</title>
+      </Helmet>
       {/*  Hero Section */}
       <section className="w-full   ">
         <div className="  px-6 py-20 text-left w-full">

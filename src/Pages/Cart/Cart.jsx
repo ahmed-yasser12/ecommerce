@@ -1,6 +1,8 @@
 import useCart from "../../hooks/useCart";
+import { Helmet } from "react-helmet-async";
 
 export default function Cart() {
+  
   const { cart, removeFromCart, increaseQty, decreaseQty } = useCart();
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -9,7 +11,11 @@ export default function Cart() {
   const shipping = cart.length > 0 ? 10 : 0;
   const total = subtotal + shipping;
   return (
+    
     <div className="max-w-7xl mx-auto px-6 my-20 py-10">
+      <Helmet>
+        <title>Cart  | ShopHub</title>
+      </Helmet>
       <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
       <div className="grid md:grid-cols-3 gap-8">

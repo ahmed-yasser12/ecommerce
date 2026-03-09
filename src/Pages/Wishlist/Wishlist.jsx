@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useWishList from "../../hooks/useWishList";
 import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 function Wishlist() {
   const { items, removeFromWishList } = useWishList();
@@ -16,6 +17,9 @@ function Wishlist() {
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-4">
+        <Helmet>
+        <title>WishList | ShopHub</title>
+      </Helmet>
       <h2 className="text-3xl font-bold mb-10">Your Wishlist</h2>
 
       <div className="grid md:grid-cols-3 gap-6">

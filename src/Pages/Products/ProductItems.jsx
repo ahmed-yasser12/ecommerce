@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import useWishList from "../../hooks/useWishList";
 import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 function ProductItems({ products }) {
   const { toggleWishList, isInWishList } = useWishList();
   const { addToCart } = useCart();
   return (
     <>
+      <Helmet>
+        <title>Products Item | ShopHub</title>
+      </Helmet>
       {products.slice(0, 9).map((product) => (
         <div
           key={product.id}

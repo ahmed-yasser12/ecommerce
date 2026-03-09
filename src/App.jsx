@@ -5,9 +5,8 @@ import Products from "./Pages/Products/Products";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
-import Compare from "./Pages/Compare/Compare";
-import Checkout from "./Pages/Checkout/Checkout";
 import { Toaster } from "react-hot-toast";
+import NotFound from "./components/NotFound";
 
 
 
@@ -23,8 +22,7 @@ export default function App() {
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
-          <Route path="compare" element={<Compare />} />
-          <Route path="checkout" element={<Checkout />} />
+           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -5,7 +5,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div>
-          <h2 className="text-xl font-bold text-white mb-3">ShopHub</h2>
+          <h2 className="text-xl font-bold text-white mb-3">MyStore</h2>
           <p className="text-sm">
             Your one-stop shop for premium products. Quality, speed, and
             satisfaction guaranteed.

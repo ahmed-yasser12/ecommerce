@@ -43,12 +43,7 @@ export default function Navbar() {
               Wishlist
             </Link>
            
-            <Link
-              to="/compare"
-              className="hover:text-blue-600 hover:bg-blue-100 p-1 rounded"
-            >
-              Compare
-            </Link>
+            
           </div>
 
           {/* Right Icons */}
@@ -74,21 +69,19 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {open && (
           <div className="md:hidden pb-4 flex flex-col gap-4">
-            <a href="/" className="hover:text-blue-600">
+            <Link href="/" className="hover:text-blue-600">
               Home
-            </a>
+            </Link>
 
-            <a href="/products" className="hover:text-blue-600">
+            <Link href="/products" className="hover:text-blue-600">
               Products
-            </a>
+            </Link>
 
-            <a href="/wishlist" className="hover:text-blue-600">
+            <Link href="/wishlist" className="hover:text-blue-600">
               Wishlist
-            </a>
+            </Link>
 
-            <a href="/compare" className="hover:text-blue-600">
-              Compare
-            </a>
+            
           </div>
         )}
       </div>

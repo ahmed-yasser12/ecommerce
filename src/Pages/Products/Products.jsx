@@ -5,6 +5,8 @@ import {
   getCategories,
   getProducts,
 } from "../../features/Products/Services/productAPI";
+import { Helmet } from "react-helmet-async";
+import ProductCardSkeleton from "../../components/ProductCardSkeleton";
 
 function Products() {
   const [allProducts, setAllProducts] = useState([]);
@@ -69,15 +71,26 @@ function Products() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-70">
-        <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin mb-4" />
-        <p className="text-gray-500 text-sm">Loading products...</p>
+      // // <div className="flex flex-col items-center justify-center py-70">
+      //   {/* <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin mb-4" />
+      //   <p className="text-gray-500 text-sm">Loading products...</p> */}
+         
+      // {/* </div> */}
+      <>
+      <div className="grid grid-cols-1 my-40 sm:grid-cols-2 md:grid-cols-3">
+       { Array.from({ length: 3}).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
       </div>
+      </>
     );
   }
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
+        <Helmet>
+        <title>Products | ShopHub</title>
+      </Helmet>
       <h3 className="text-3xl font-bold">Our Products</h3>
 
       {/* Search + Category */}
