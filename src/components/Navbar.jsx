@@ -53,12 +53,13 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {/* Cart */}
             <div className="relative">
-              <Link>
-              </Link>
-              <ShoppingCart className="w-6 h-6" />
+              <Link to={"/cart"}>
+<ShoppingCart className="w-6 h-6" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
                 2
               </span>
+              </Link>
+              
             </div>
 
             {/* Mobile Menu Button */}

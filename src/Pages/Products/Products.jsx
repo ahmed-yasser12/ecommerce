@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ProductItems from "./ProductItems";
 import {
   getCategories,
@@ -9,10 +9,14 @@ import {
 function Products() {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Read values from URL
+  const search = searchParams.get("search") || "";
+  const selectedCategory = searchParams.get("category") || "";
+  const currentPage = parseInt(searchParams.get("page")) || 1;
 
   const itemsPerPage = 8;
 
@@ -32,10 +36,15 @@ function Products() {
     fetchProducts();
   }, []);
 
-  // Reset page when search or category changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, selectedCategory]);
+  // Update URL helper
+  const updateParams = (params) => {
+    setSearchParams({
+      search,
+      category: selectedCategory,
+      page: currentPage,
+      ...params,
+    });
+  };
 
   // 🔎 Filter products
   const filteredProducts = allProducts.filter((product) => {
@@ -49,9 +58,8 @@ function Products() {
     return matchSearch && matchCategory;
   });
 
-  // 📄 Pagination
+  // Pagination
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
   const startIndex = (currentPage - 1) * itemsPerPage;
 
   const currentProducts = filteredProducts.slice(
@@ -69,7 +77,7 @@ function Products() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section className="max-w-7xl mx-auto px-4 py-16">
       <h3 className="text-3xl font-bold">Our Products</h3>
 
       {/* Search + Category */}
@@ -77,15 +85,19 @@ function Products() {
         <input
           type="text"
           placeholder="Search products..."
-          onChange={(e) => setSearch(e.target.value)}
           value={search}
+          onChange={(e) =>
+            updateParams({ search: e.target.value, page: 1 })
+          }
           className="border w-[50%] border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <select
           value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={(e) =>
+            updateParams({ category: e.target.value, page: 1 })
+          }
+          className="border border-gray-300 rounded-lg py-2 px-4"
         >
           <option value="">All Categories</option>
 
@@ -113,21 +125,22 @@ function Products() {
         <div className="flex justify-center items-center gap-2 mt-8">
           {/* Prev */}
           <button
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            className="px-4 py-2 border rounded-lg hover:bg-gray-100 disabled:cursor-not-allowed disabled:bg-gray-200"
+            onClick={() =>
+              updateParams({ page: Math.max(currentPage - 1, 1) })
+            }
+            className="px-4 py-2 border rounded-lg"
             disabled={currentPage === 1}
           >
             Prev
           </button>
 
-          {/* Page Numbers */}
           {[...Array(totalPages)].map((_, index) => {
             const page = index + 1;
 
             return (
               <button
                 key={page}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => updateParams({ page })}
                 className={`px-4 py-2 rounded-lg border ${
                   currentPage === page
                     ? "bg-blue-600 text-white"
@@ -142,9 +155,11 @@ function Products() {
           {/* Next */}
           <button
             onClick={() =>
-              setCurrentPage((p) => Math.min(p + 1, totalPages))
+              updateParams({
+                page: Math.min(currentPage + 1, totalPages),
+              })
             }
-            className="px-4 py-2 border rounded-lg hover:bg-gray-100 disabled:cursor-not-allowed disabled:bg-gray-200"
+            className="px-4 py-2 border rounded-lg"
             disabled={currentPage === totalPages}
           >
             Next

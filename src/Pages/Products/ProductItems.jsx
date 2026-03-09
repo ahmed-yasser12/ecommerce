@@ -1,11 +1,13 @@
 import { Heart, Star, ShoppingCart } from "lucide-react";
 import HalfStar from "./HaIfStar";
 import { Link } from "react-router-dom";
+import useWishList from "../../hooks/useWishList";
 
 function ProductItems({ products }) {
+  const { toggleWishList, isInWishList } = useWishList();
   return (
     <>
-      {products.slice(0,9).map((product) => (
+      {products.slice(0, 9).map((product) => (
         <div
           key={product.id}
           className="bg-white  rounded-xl shadow-md overflow-hidden hover:shadow-lg transition p-4"
@@ -21,8 +23,18 @@ function ProductItems({ products }) {
             </Link>
 
             {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500">
-              <Heart size={18} />
+            <button
+              onClick={() => toggleWishList(product)}
+              className="absolute top-3 right-3 bg-white p-2 rounded-full shadow"
+            >
+              <Heart
+                size={18}
+                className={
+                  isInWishList(product.id)
+                    ? "text-red-500 fill-red-500"
+                    : "text-gray-500"
+                }
+              />
             </button>
           </div>
 
