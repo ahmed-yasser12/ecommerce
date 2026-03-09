@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { cart } = useCart();
 
   return (
     <nav className="bg-white shadow-md fixed top-0 w-full z-10">
@@ -56,7 +58,7 @@ export default function Navbar() {
               <Link to={"/cart"}>
 <ShoppingCart className="w-6 h-6" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
-                2
+                 {cart.length}
               </span>
               </Link>
               

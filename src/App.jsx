@@ -7,12 +7,15 @@ import Cart from "./Pages/Cart/Cart";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import Compare from "./Pages/Compare/Compare";
 import Checkout from "./Pages/Checkout/Checkout";
+import { Toaster } from "react-hot-toast";
 
 
 
 export default function App() {
   return (
+    
     <BrowserRouter>
+    <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

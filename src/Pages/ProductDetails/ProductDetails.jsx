@@ -3,9 +3,12 @@ import { getProductById } from '../../features/Products/Services/productAPI';
 import { useParams ,Link} from 'react-router-dom';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
 import HalfStar from '../Products/HaIfStar';
+import useCart from '../../hooks/useCart';
+import toast from 'react-hot-toast';
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { addToCart } = useCart();
 useEffect(() => {
     const fetchProductDetails = async () => {
       let productData = await getProductById(id);
@@ -118,7 +121,10 @@ useEffect(() => {
           <div className="flex items-center gap-4 pt-4">
 
             {/* Add To Cart */}
-             <Link to="/cart"  className="flex items-center gap-2
+             <Link to="/cart" onClick={() => {
+               addToCart(product);
+               toast.success("Added to cart 🛒");
+             }} className="flex items-center gap-2
              bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
               <ShoppingCart size={20} />
               Add to Cart

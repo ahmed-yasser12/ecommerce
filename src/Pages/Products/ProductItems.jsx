@@ -2,9 +2,12 @@ import { Heart, Star, ShoppingCart } from "lucide-react";
 import HalfStar from "./HaIfStar";
 import { Link } from "react-router-dom";
 import useWishList from "../../hooks/useWishList";
+import useCart from "../../hooks/useCart";
+import toast from "react-hot-toast";
 
 function ProductItems({ products }) {
   const { toggleWishList, isInWishList } = useWishList();
+  const { addToCart } = useCart();
   return (
     <>
       {products.slice(0, 9).map((product) => (
@@ -116,13 +119,16 @@ function ProductItems({ products }) {
               </p>
 
               {/* Add To Cart */}
-              <Link
-                to={`/cart`}
-                className="mt-4  px-4 flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+              <button
+                onClick={() => {
+                  addToCart(product);
+                  toast.success("Added to cart 🛒");
+                }}
+                className="mt-4 px-4 flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
               >
                 <ShoppingCart size={18} />
                 Add to Cart
-              </Link>
+              </button>
             </div>
           </div>
         </div>
