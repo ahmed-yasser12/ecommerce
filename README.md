@@ -31,7 +31,7 @@ A modern and responsive e-commerce web application that allows users to browse p
 
 ## ⚙️ Installation
 ```bash
-git clone https://github.com/ahmed-yasser12/your-repo
-cd your-repo
+git clone https://github.com/ahmed-yasser12/ecommerce.git
+cd ecommerce
 npm install
 npm run dev
